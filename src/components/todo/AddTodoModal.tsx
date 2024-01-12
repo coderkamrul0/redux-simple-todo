@@ -13,6 +13,7 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { useAppDispatch } from "@/redux/hooks";
 import { addTodo } from "@/redux/features/todoSlice";
+import { v4 as uuidv4 } from 'uuid';
 
 const AddTodoModal = () => {
   const [task, setTask] = useState("");
@@ -22,6 +23,7 @@ const AddTodoModal = () => {
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     const taskDetails = {
+      id:uuidv4(),
       title: task,
       description: description,
     };
