@@ -5,16 +5,34 @@ import {
 } from "@heroicons/react/16/solid";
 import { Button } from "../ui/button";
 import { useAppDispatch } from "@/redux/hooks";
-import { removeTodo } from "@/redux/features/todoSlice";
+import { removeTodo, toggleComplete } from "@/redux/features/todoSlice";
 
 const TodoCard = ({ item }: any) => {
   const dispatch = useAppDispatch();
+
+  const toggleState = () => {
+    dispatch(toggleComplete(item.id));
+  };
   return (
     <div>
       <div className="bg-white rounded-xl flex justify-between items-center p-3 border">
-        <input type="checkbox" name="" id="" />
+        <input
+          onChange={toggleState}
+          className="bg-black"
+          checked={item.isCompleted}
+          type="checkbox"
+          name="complete"
+          id="complete"
+        />
         <p className="font-semibold">{item.title}</p>
-        {/* <p>Time</p> */}
+        <div>
+          {item.isCompleted ? (
+            <p className="text-green-500">Done</p>
+          ) : (
+            <p className="text-red-500">Pending</p>
+          )}
+        </div>
+        <p>{item.priority}</p>
         <p>{item.description}</p>
         <div className="space-x-5">
           <Button

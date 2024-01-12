@@ -13,21 +13,24 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { useAppDispatch } from "@/redux/hooks";
 import { addTodo } from "@/redux/features/todoSlice";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 const AddTodoModal = () => {
   const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
   const dispatch = useAppDispatch();
+  const [priority, setPriority] = useState("Low");
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     const taskDetails = {
-      id:uuidv4(),
+      id: uuidv4(),
       title: task,
       description: description,
+      priority: priority,
     };
     dispatch(addTodo(taskDetails));
+    setPriority('Low')
   };
 
   return (
@@ -67,6 +70,22 @@ const AddTodoModal = () => {
                 id="description"
                 className="col-span-3"
               />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="priority" className="text-right">
+                Priority
+              </Label>
+              <select
+                required
+                id="priority"
+                className="col-span-3 border rounded-md py-2"
+                onChange={(e) => setPriority(e.target.value)}
+                value={priority}
+              >
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select>
             </div>
           </div>
           <div className="flex justify-end">

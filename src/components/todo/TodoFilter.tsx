@@ -11,19 +11,25 @@ import {
 } from "../ui/dropdown-menu";
 
 const TodoFilter = () => {
-  const [position, setPosition] = useState("bottom");
+
+  const [position, setPosition] = useState("All");
+
+  
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className="bg-primary-gradient text-xl font-semibold">Filter</Button>
+        <Button className="bg-primary-gradient text-xl font-semibold">
+          Filter
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>Filter by priority</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
-          <DropdownMenuRadioItem value="high">High</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="medium">Medium</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="low">Low</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="High">High</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="Medium">Medium</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="Low">Low</DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>
