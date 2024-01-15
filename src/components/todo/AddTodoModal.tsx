@@ -11,26 +11,25 @@ import {
 } from "../ui/dialog";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-import { useAppDispatch } from "@/redux/hooks";
-import { addTodo } from "@/redux/features/todoSlice";
-import { v4 as uuidv4 } from "uuid";
+import { useAddTodosMutation } from "@/redux/api/api";
 
 const AddTodoModal = () => {
   const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
-  const dispatch = useAppDispatch();
   const [priority, setPriority] = useState("Low");
+
+  const [addTodo, { data, isLoading, isSuccess, isError }] =
+    useAddTodosMutation();
+  console.log({ data, isLoading, isSuccess, isError });
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     const taskDetails = {
-      id: uuidv4(),
       title: task,
       description: description,
       priority: priority,
     };
-    dispatch(addTodo(taskDetails));
-    setPriority('Low')
+    addTodo(taskDetails);
   };
 
   return (

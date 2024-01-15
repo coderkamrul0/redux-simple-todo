@@ -45,7 +45,7 @@ const TodoCard = ({ item }: any) => {
             <p className="text-red-500">Pending</p>
           )}
         </div>
-        <p className="flex-1">{item.description}</p>
+        <p className="flex-1 text-sm">{item.description}</p>
         <div className="space-x-5">
           <Button
             onClick={() => dispatch(removeTodo(item.id))}
