@@ -5,5 +5,14 @@ export const baseApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://todo-server-sandy.vercel.app/",
   }),
-  endpoints: () => ({}),
+  endpoints: (builder) => ({
+    getTodos: builder.query({
+      query: () => ({
+        url: "/tasks",
+        method: "GET",
+      }),
+    }),
+  }),
 });
+
+export const { useGetTodosQuery } = baseApi;

@@ -18,22 +18,34 @@ const TodoCard = ({ item }: any) => {
       <div className="bg-white rounded-xl flex justify-between items-center p-3 border">
         <input
           onChange={toggleState}
-          className="bg-black"
+          className="bg-black mr-2"
           checked={item.isCompleted}
           type="checkbox"
           name="complete"
           id="complete"
         />
-        <p className="font-semibold">{item.title}</p>
-        <div>
+        <p className="font-semibold flex-1">{item.title}</p>
+        <div className="flex-1 flex items-center gap-2">
+          <div
+            className={`size-3 rounded-full ${
+              item.priority === "high"
+                ? "bg-red-500"
+                : item.priority === "medium"
+                ? "bg-yellow-500"
+                : "bg-green-500"
+            }`}
+          ></div>
+
+          <p className="flex-1 capitalize">{item.priority}</p>
+        </div>
+        <div className="flex-1">
           {item.isCompleted ? (
             <p className="text-green-500">Done</p>
           ) : (
             <p className="text-red-500">Pending</p>
           )}
         </div>
-        <p>{item.priority}</p>
-        <p>{item.description}</p>
+        <p className="flex-1">{item.description}</p>
         <div className="space-x-5">
           <Button
             onClick={() => dispatch(removeTodo(item.id))}
