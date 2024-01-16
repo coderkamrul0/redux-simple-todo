@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import AddTodoModal from "./AddTodoModal";
 import TodoCard from "./TodoCard";
@@ -30,7 +31,7 @@ const TodoContainer = () => {
         ) : (
           <>
             <div className="bg-white p-5 w-full h-full rounded-lg space-y-3">
-              {todos?.data?.map((item) => (
+              {todos?.data?.map((item: { _id: any; }) => (
                 <TodoCard item={item} key={item._id} />
               ))}
             </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import { Button } from "../ui/button";
 import {
   DropdownMenu,
@@ -10,8 +10,8 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 
-const TodoFilter = ({ priority, setPriority }) => {
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const TodoFilter = ({ priority, setPriority }: any) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
