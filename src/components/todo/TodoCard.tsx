@@ -41,6 +41,7 @@ const TodoCard = ({ item }: any) => {
           type="checkbox"
           name="complete"
           id="complete"
+          defaultChecked={item.isCompleted}
         />
         <p className="font-semibold flex-1">{item.title}</p>
         <div className="flex-1 flex items-center gap-2">

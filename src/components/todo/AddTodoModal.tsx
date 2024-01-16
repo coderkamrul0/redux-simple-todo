@@ -26,11 +26,9 @@ const AddTodoModal = () => {
   const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("");
-  console.log(priority);
 
   const [addTodo, { data, isLoading, isSuccess, isError }] =
     useAddTodosMutation();
-  console.log({ data, isLoading, isSuccess, isError });
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -40,7 +38,6 @@ const AddTodoModal = () => {
       isCompleted: false,
       priority: priority,
     };
-    console.log("Inside Modal", taskDetails);
     addTodo(taskDetails);
   };
 
