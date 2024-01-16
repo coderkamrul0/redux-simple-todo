@@ -10,7 +10,7 @@ import {
 } from "@/redux/api/api";
 
 const TodoCard = ({ item }: any) => {
-  const [updateTodo, { isLoading }] = useUpdateTodosMutation();
+  const [updateTodo] = useUpdateTodosMutation();
   const [deleteTodo, { isLoading: deleteLoading }] = useDeleteTodosMutation();
   const toggleState = () => {
     const taskData = {

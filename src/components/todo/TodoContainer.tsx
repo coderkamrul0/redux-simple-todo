@@ -8,7 +8,7 @@ const TodoContainer = () => {
 
   const [priority, setPriority] = useState('')
   // from server
-  const { data: todos, isLoading, isError } = useGetTodosQuery(priority);
+  const { data: todos, isLoading } = useGetTodosQuery(priority);
   if (isLoading) {
     return <p>Loading</p>;
   }

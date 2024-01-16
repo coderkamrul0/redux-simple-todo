@@ -27,7 +27,7 @@ const AddTodoModal = () => {
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("");
 
-  const [addTodo, { data, isLoading, isSuccess, isError }] =
+  const [addTodo] =
     useAddTodosMutation();
 
   const onSubmit = (e: FormEvent) => {
