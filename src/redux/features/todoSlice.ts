@@ -22,7 +22,7 @@ const todoSlice = createSlice({
   initialState: initialState,
   reducers: {
     addTodo: (state, action: PayloadAction<TTodo>) => {
-      state.todos.push({ ...action.payload, isCompleted: false });
+      state.todos.push({ ...action.payload });
     },
     removeTodo: (state, action: PayloadAction<string>) => {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload);
@@ -34,7 +34,6 @@ const todoSlice = createSlice({
         task.isCompleted = true;
       }
     },
-   
   },
 });
 
