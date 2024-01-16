@@ -4,14 +4,33 @@ import {
   PencilSquareIcon,
 } from "@heroicons/react/16/solid";
 import { Button } from "../ui/button";
-import { useAppDispatch } from "@/redux/hooks";
-import { removeTodo, toggleComplete } from "@/redux/features/todoSlice";
+import {
+  useDeleteTodosMutation,
+  useUpdateTodosMutation,
+} from "@/redux/api/api";
 
 const TodoCard = ({ item }: any) => {
-  const dispatch = useAppDispatch();
-
+  const [updateTodo, { isLoading }] = useUpdateTodosMutation();
+  const [deleteTodo, { isLoading: deleteLoading }] = useDeleteTodosMutation();
   const toggleState = () => {
-    dispatch(toggleComplete(item.id));
+    const taskData = {
+      title: item.title,
+      description: item.description,
+      priority: item.priority,
+      isCompleted: !item.isCompleted,
+    };
+
+    const options = {
+      id: item._id,
+      data: taskData,
+    };
+
+    console.log(options);
+    updateTodo(options);
+  };
+
+  const handleDelete = () => {
+    deleteTodo(item._id);
   };
   return (
     <div>
@@ -19,7 +38,6 @@ const TodoCard = ({ item }: any) => {
         <input
           onChange={toggleState}
           className="bg-black mr-2"
-          checked={item.isCompleted}
           type="checkbox"
           name="complete"
           id="complete"
@@ -48,8 +66,9 @@ const TodoCard = ({ item }: any) => {
         <p className="flex-1 text-sm">{item.description}</p>
         <div className="space-x-5">
           <Button
-            onClick={() => dispatch(removeTodo(item.id))}
             className="bg-red-500"
+            onClick={handleDelete}
+            disabled={deleteLoading}
           >
             <ArchiveBoxArrowDownIcon className="h-6 w-6 text-white" />
           </Button>
